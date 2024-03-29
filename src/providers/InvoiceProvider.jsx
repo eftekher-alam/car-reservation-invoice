@@ -7,6 +7,7 @@ const InvoiceProvider = ({ children }) => {
     const [durationHr, setDurationHr] = useState(0);
     const [discount, setDiscount] = useState(0);
     const [transitionID, setTransitionID] = useState("");
+    const [userInfo, setUserInfo] = useState({});
 
 
     //Fetch data from API
@@ -24,9 +25,9 @@ const InvoiceProvider = ({ children }) => {
         setTransitionID(transId);
     }, []);
 
-    console.log(transitionID, "from context");
+    console.log(userInfo, "from context");
 
-    const invoiceInfo = { data, setDurationHr, durationHr, setDiscount, transitionID };
+    const invoiceInfo = { data, setDurationHr, durationHr, setDiscount, transitionID, setUserInfo };
 
     return (
         <InvoiceContext.Provider value={invoiceInfo}>
