@@ -8,22 +8,24 @@ import AdditionalCharges from './../additional_charges/AdditionalCharges';
 const Home = () => {
     return (
         <div className="container mx-auto">
-            <Navbar></Navbar>
-            <div className="grid grid-cols-3">
-                <div className="lg:col-span-2">
-                    <div className="grid grid-cols-2">
-                        <div>
-                            <ReservationDetails></ReservationDetails>
-                            <VehicleInfo></VehicleInfo>
-                        </div>
-                        <div>
-                            <CustomerInfo></CustomerInfo>
-                            <AdditionalCharges></AdditionalCharges>
+            <div className="mx-3 lg:mx-6 xl:mx-0">
+                <Navbar></Navbar>
+                <div className="grid lg:grid-cols-3 gap-4">
+                    <div className="lg:col-span-2">
+                        <div className="grid lg:grid-cols-2">
+                            <div>
+                                <ReservationDetails></ReservationDetails>
+                                <VehicleInfo></VehicleInfo>
+                            </div>
+                            <div>
+                                <CustomerInfo></CustomerInfo>
+                                <AdditionalCharges></AdditionalCharges>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="lg:col-span-1">
-                    <ChargeSummary></ChargeSummary>
+                    <div className="lg:col-span-1">
+                        <ChargeSummary></ChargeSummary>
+                    </div>
                 </div>
             </div>
         </div>
