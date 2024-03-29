@@ -8,25 +8,24 @@ const VehicleInfo = () => {
     const [vehicleType, setVehicleType] = useState([]);
     const [vehicles, setVehicles] = useState([]);
     const [selectedVehicles, setSelectedVehicles] = useState([]);
-    // console.log(data);
 
     useEffect(() => {
         setVehicleType(Array.from(new Set(data?.map((item) => item?.type))));
     }, [data]);
 
-    const handlarTypeWiseCars = (e) => {
+    const handlerTypeWiseCars = (e) => {
         let selectedType = e.target.value;
         setVehicles(data.filter(car => car?.type.toString() === selectedType));
+
+        // After select a type of vehicle clear the previous selection
         document.getElementById("SelectVehicleID").value = "Select Vehicle";
         setSelectedVehicles([]);
     }
 
-    const handlarSelectedVehicle = (e) => {
+    const handlerSelectedVehicle = (e) => {
         let selectedVehicleID = e.target.value;
         setSelectedVehicles(data.filter(data => data.id.toString() === selectedVehicleID.toString()));
     }
-
-    console.log(selectedVehicles, "olk");
 
     return (
         <div>
@@ -40,7 +39,7 @@ const VehicleInfo = () => {
                             <div className="label">
                                 <span className="label-text">Vehicle Type<span className="text-red-500">*</span></span>
                             </div>
-                            <select onChange={handlarTypeWiseCars} defaultValue={"Select Type"} required className="select select-sm select-bordered">
+                            <select onChange={handlerTypeWiseCars} defaultValue={"Select Type"} required className="select select-sm select-bordered">
                                 <option disabled value={"Select Type"}>Select Type</option>
                                 {
                                     vehicleType?.map((type, index) => <option key={index} value={type} >{type}</option>)
@@ -51,10 +50,10 @@ const VehicleInfo = () => {
                             <div className="label">
                                 <span className="label-text">Vehicle<span className="text-red-500">*</span></span>
                             </div>
-                            <select onChange={handlarSelectedVehicle} defaultValue={"Select Vehicle"} id="SelectVehicleID" required className="select select-sm select-bordered">
+                            <select onChange={handlerSelectedVehicle} defaultValue={"Select Vehicle"} id="SelectVehicleID" required className="select select-sm select-bordered">
                                 <option disabled value={"Select Vehicle"}>Select Vehicle</option>
                                 {
-                                    vehicles?.map((vehicle, index) => <option key={index} value={vehicle?.id} >{vehicle?.id}</option>)
+                                    vehicles?.map((vehicle, index) => <option key={index} value={vehicle?.id} >{`${vehicle?.id} | ${vehicle?.model} -  ${vehicle?.year}`}</option>)
                                 }
                             </select>
                         </label>
@@ -71,17 +70,21 @@ const VehicleInfo = () => {
                             </div>
                             <div>Seats : {selectedVehicles[0]?.seats}</div>
                             <div>Bags : {selectedVehicles[0]?.bags}</div>
-                            <h2>Features : </h2>
-                            <div className="pl-4">
-                                {
-                                    selectedVehicles[0]?.features.map((feature, index) => <li key={index}>{feature}</li>)
-                                }
+                            <div>
+                                <h2>Features : </h2>
+                                <div className="pl-4">
+                                    {
+                                        selectedVehicles[0]?.features.map((feature, index) => <li key={index}>{feature}</li>)
+                                    }
+                                </div>
                             </div>
-                            <div>Pricing : </div>
-                            <div className="flex justify-between">
-                                <div>${selectedVehicles[0]?.rates?.hourly}/hour</div>
-                                <div>${selectedVehicles[0]?.rates?.daily}/daily</div>
-                                <div>${selectedVehicles[0]?.rates?.weekly}/weekly</div>
+                            <div>
+                                <div>Pricing : </div>
+                                <div className="flex justify-between">
+                                    <div>${selectedVehicles[0]?.rates?.hourly}/hour</div>
+                                    <div>${selectedVehicles[0]?.rates?.daily}/daily</div>
+                                    <div>${selectedVehicles[0]?.rates?.weekly}/weekly</div>
+                                </div>
                             </div>
                         </div>
                     }

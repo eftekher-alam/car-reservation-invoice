@@ -4,8 +4,8 @@ const ChargeSummary = () => {
     return (
         <div>
             <FormHeader headingText={"Charges Summary"}></FormHeader>
-            <div className="card glass">
-                <div className="card-body text-sm p-4 space-y-4">
+            <div className="card glass bg-[#DFDFFF]">
+                <div className="card-body text-sm p-4 space-y-4 border border-[#5D5CFF] rounded-lg       ">
                     <div className="grid grid-cols-12 gap-1 font-semibold relative after:w-full after:h-[1px] after:bg-[#5D5CFF] after:absolute after:-bottom-1 after:left-0">
                         <div className="col-span-5 xl:col-span-6">Charge</div>
                         <div className="col-span-1 xl:col-span-2 text-center">Unit</div>
