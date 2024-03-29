@@ -8,11 +8,11 @@ import AdditionalCharges from './../additional_charges/AdditionalCharges';
 const Home = () => {
     return (
         <div className="container mx-auto">
-            <div className="max-lg:mx-3">
+            <div className="max-xl:mx-3">
                 <Navbar></Navbar>
-                <div className="grid lg:grid-cols-3 lg:gap-8">
+                <div className="grid lg:grid-cols-3 lg:gap-4 xl:gap-8">
                     <div className="lg:col-span-2">
-                        <div className="grid lg:grid-cols-2 lg:gap-8">
+                        <div className="grid lg:grid-cols-2 lg:gap-4 xl:gap-8">
                             <div>
                                 <ReservationDetails></ReservationDetails>
                                 <VehicleInfo></VehicleInfo>
