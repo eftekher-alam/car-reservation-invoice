@@ -1,9 +1,10 @@
+import FormHeader from "../form_header/FormHeader";
 
 const CustomerInfo = () => {
     return (
         <div>
-            <div className={`font-bold lg:text-lg relative after:w-full after:h-[1px] after:bg-[#5D5CFF] after:absolute after:-bottom-1 after:left-0`}>Customer Information</div>
-            <div className="card glass mt-6">
+            <FormHeader headingText={"Customer Information"}></FormHeader>
+            <div className="card glass">
                 <div className="card-body">
                     <form className="space-y-2">
                         <label className="form-control w-full">
