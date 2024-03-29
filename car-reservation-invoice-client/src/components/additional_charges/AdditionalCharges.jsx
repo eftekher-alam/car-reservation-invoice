@@ -13,14 +13,14 @@ const AdditionalCharges = () => {
                                     <input type="checkbox" className="checkbox checkbox-sm" />
                                     <span className="label-text">Collision Damage Waiver</span>
                                 </div>
-                                <span className="label-text">$ 9.00</span>
+                                <span className="label-text">$9.00</span>
                             </label>
                             <label className="label cursor-pointer">
                                 <div className="flex gap-2">
                                     <input type="checkbox" className="checkbox checkbox-sm" />
                                     <span className="label-text">Liability Insurance</span>
                                 </div>
-                                <span className="label-text">$ 15.00</span>
+                                <span className="label-text">$15.00</span>
                             </label>
                             <label className="label cursor-pointer">
                                 <div className="flex gap-2">

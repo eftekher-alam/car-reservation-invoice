@@ -8,7 +8,7 @@ import AdditionalCharges from './../additional_charges/AdditionalCharges';
 const Home = () => {
     return (
         <div className="container mx-auto">
-            <div className="mx-4 md:mx-12 lg:mx-4 xl:mx-0">
+            <div className="mx-4 md:mx-12 lg:mx-4 xl:mx-0 mb-10">
                 <Navbar></Navbar>
                 <div className="grid lg:grid-cols-3 lg:gap-4 xl:gap-8">
                     <div className="lg:col-span-2">

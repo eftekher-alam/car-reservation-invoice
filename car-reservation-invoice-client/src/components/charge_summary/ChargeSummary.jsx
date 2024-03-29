@@ -31,8 +31,8 @@ const ChargeSummary = () => {
                         <div className="col-span-3 xl:col-span-2">$9.00</div>
                     </div>
                     <div className="grid grid-cols-12 gap-1 font-semibold">
-                        <div className="col-span-9">Total</div>
-                        <div className="col-span-3">$9.00</div>
+                        <div className="col-span-9 xl:col-span-10">Total</div>
+                        <div className="col-span-3 xl:col-span-2">$9.00</div>
                     </div>
                 </div>
             </div>
