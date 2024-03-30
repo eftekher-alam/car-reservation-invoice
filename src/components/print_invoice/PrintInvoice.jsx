@@ -17,35 +17,43 @@ const PrintInvoice = () => {
             <FormHeader headingText={"Invoice"}></FormHeader>
             <div ref={ref} className="p-10 text-sm">
                 <div className="grid grid-cols-2">
-                    <div className="grid grid-cols-2">
-                        {/* logo with user & company info  */}
-                        <div className="w-full flex flex-col justify-center items-center gap-4">
-                            <div><img src="/public/car-logo.png" alt="" className="w-32" /></div>
-                            <div className="w-full">
-                                <h1>RENTER INFO</h1>
-                                <p className="font-bold capitalize ">{firstName + " " + lastName}</p>
-                                <p>{email}</p>
-                                <p>PH: {phone}</p>
+                    {/* right div` */}
+                    <div>
+                        <div className="grid grid-cols-2">
+                            {/* logo with user & company info  */}
+                            <div className="w-full flex flex-col justify-center items-center gap-4">
+                                <div><img src="/public/car-logo.png" alt="" className="w-32" /></div>
+                                <div className="w-full">
+                                    <h1>RENTER INFO</h1>
+                                    <p className="font-bold capitalize ">{firstName + " " + lastName}</p>
+                                    <p>{email}</p>
+                                    <p>PH: {phone}</p>
+                                </div>
+                            </div>
+                            <div className="space-y-3">
+                                <div>
+                                    <p>CH Car Place Inc</p>
+                                    <p>162 Bergen st</p>
+                                    <p>Brooklyn, NY 112113</p>
+                                    <p>PH#</p>
+                                </div>
+                                <div>
+                                    Monday 9:00 AM - 6:00 PM <br />
+                                    Tuesday 9:00 AM - 6:00 PM <br />
+                                    Wednesday 9:00 AM - 6:00 PM <br />
+                                    Thursday 9:00 AM - 6:00 PM <br />
+                                    Friday 9:00 AM - 6:00 PM <br />
+                                    Saturday 9:00 AM - 6:00 PM <br />
+                                    Sunday 9:00 AM - 6:00 PM <br />
+                                </div>
                             </div>
                         </div>
-                        <div className="space-y-3">
-                            <div>
-                                <p>CH Car Place Inc</p>
-                                <p>162 Bergen st</p>
-                                <p>Brooklyn, NY 112113</p>
-                                <p>PH#</p>
-                            </div>
-                            <div>
-                                Monday 9:00 AM - 6:00 PM <br />
-                                Tuesday 9:00 AM - 6:00 PM <br />
-                                Wednesday 9:00 AM - 6:00 PM <br />
-                                Thursday 9:00 AM - 6:00 PM <br />
-                                Friday 9:00 AM - 6:00 PM <br />
-                                Saturday 9:00 AM - 6:00 PM <br />
-                                Sunday 9:00 AM - 6:00 PM <br />
-                            </div>
+                        <div className="">
+                            <h1 className="text-lg font-bold my-3">ADDITIONAL AUTHORIZED DRIVER(S)</h1>
+                            
                         </div>
                     </div>
+                    {/* left div */}
                     <div>
                         <div>
                             <h1 className="text-2xl font-bold">Reservation</h1>
