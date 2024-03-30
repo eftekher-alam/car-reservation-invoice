@@ -7,33 +7,30 @@ const ReservationDetails = () => {
     const [pickupDate, setPickupDate] = useState("");
     const [returnDate, setReturnDate] = useState("");
     const [duration, setDuration] = useState("");
-    const { setDurationHr, setDiscount, transitionID } = useContext(InvoiceContext);
+    const { setDurationHr, setDiscount, transitionID, setDurationDay } = useContext(InvoiceContext);
 
     useEffect(() => {
         if (pickupDate && returnDate) {
-            var timeDifference = new Date(returnDate).getTime() - new Date(pickupDate).getTime();
-            var hourDifference = timeDifference / (1000 * 60 * 60);
+            let timeDifference = new Date(returnDate).getTime() - new Date(pickupDate).getTime();
+            let hourDifference = timeDifference / (1000 * 60 * 60);
 
             // Calculate total minutes
-            var totalMinutes = hourDifference * 60;
+            let totalMinutes = hourDifference * 60;
 
             // Calculate weeks
-            var weeks = Math.floor(totalMinutes / (7 * 24 * 60));
+            let weeks = Math.floor(totalMinutes / (7 * 24 * 60));
 
             // Calculate remaining minutes after considering weeks
-            var remainingMinutes = totalMinutes % (7 * 24 * 60);
+            let remainingMinutes = totalMinutes % (7 * 24 * 60);
 
             // Calculate days
-            var days = Math.floor(remainingMinutes / (24 * 60));
+            let days = Math.floor(remainingMinutes / (24 * 60));
 
             // Calculate remaining minutes after considering days
             remainingMinutes %= (24 * 60);
 
             // Calculate hours
-            var hours = Math.floor(remainingMinutes / 60);
-
-            // Calculate remaining minutes
-            var minutes = remainingMinutes % 60;
+            let hours = Math.floor(remainingMinutes / 60);
 
             let durationMsg = [];
             if (weeks)
@@ -42,14 +39,14 @@ const ReservationDetails = () => {
                 durationMsg.push(` ${days} day`);
             if (hours)
                 durationMsg.push(` ${hours} hrs`);
-            if (minutes)
-                durationMsg.push(` ${minutes} min`);
 
             setDuration(durationMsg);
             setDurationHr(hourDifference);
+            // setDurationDay(days);
+
 
         }
-    }, [pickupDate, returnDate, setDurationHr]);
+    }, [pickupDate, returnDate, setDurationHr, setDurationDay]);
 
     const handlerPickupDate = (e) => {
         setPickupDate(e.target.value);
@@ -74,7 +71,7 @@ const ReservationDetails = () => {
                             <div className="label">
                                 <span className="label-text">Reservation ID</span>
                             </div>
-                            <input type="text" value={transitionID} className="input input-sm input-bordered w-full" />
+                            <input type="text" value={transitionID} readOnly className="input input-sm input-bordered w-full" />
                         </label>
                         <label className="form-control w-full">
                             <div className="label">
