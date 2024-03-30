@@ -8,6 +8,9 @@ const InvoiceProvider = ({ children }) => {
     const [discount, setDiscount] = useState(0);
     const [transitionID, setTransitionID] = useState("");
     const [userInfo, setUserInfo] = useState({});
+    const [collisionCharge, setCollisionCharge] = useState(false);
+    const [liabilityInsurance, setLiabilityInsurance] = useState(false);
+    const [rentalTax, setRentalTax] = useState(false);
 
 
     //Fetch data from API
@@ -25,9 +28,9 @@ const InvoiceProvider = ({ children }) => {
         setTransitionID(transId);
     }, []);
 
-    console.log(userInfo, "from context");
+    console.log(collisionCharge, liabilityInsurance, rentalTax , "from context");
 
-    const invoiceInfo = { data, setDurationHr, durationHr, setDiscount, transitionID, setUserInfo };
+    const invoiceInfo = { data, setDurationHr, durationHr, setDiscount, transitionID, setUserInfo, setCollisionCharge, setLiabilityInsurance, setRentalTax};
 
     return (
         <InvoiceContext.Provider value={invoiceInfo}>
