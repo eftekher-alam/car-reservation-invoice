@@ -3,7 +3,7 @@ import FormHeader from "../form_header/FormHeader";
 import { InvoiceContext } from "../../providers/InvoiceProvider";
 
 const ChargeSummary = () => {
-    const { collisionCharge, liabilityInsurance, rentalTax, chargesOnHrs, selectedVehicle, totalCharges, rentalTaxAmt, totalChargesWithTax } = useContext(InvoiceContext);
+    const { collisionCharge, liabilityInsurance, rentalTax, chargesOnHrs, selectedVehicle, discountedCharge, rentalTaxAmt, totalChargesWithTax } = useContext(InvoiceContext);
     return (
         <div>
             <FormHeader headingText={"Charges Summary"}></FormHeader>
@@ -49,7 +49,7 @@ const ChargeSummary = () => {
                     }
                     <div className="grid grid-cols-12 gap-1 font-semibold">
                         <div className="col-span-9 xl:col-span-10">Total</div>
-                        <div className="col-span-3 xl:col-span-2">${totalChargesWithTax > 0 ? totalChargesWithTax.toFixed(2) : totalCharges.toFixed(2)}</div>
+                        <div className="col-span-3 xl:col-span-2">${totalChargesWithTax.toFixed(2)}</div>
                     </div>
                 </div>
             </div>

@@ -20,7 +20,7 @@ const InvoiceProvider = ({ children }) => {
     const [discountedCharge, setDiscountedCharge] = useState(0);
 
 
-    const [rentalTax, setRentalTax] = useState("initial");
+    const [rentalTax, setRentalTax] = useState(false);
     const [rentalTaxAmt, setRentalTaxAmt] = useState(0);
     const [totalChargesWithTax, setTotalChargesWithTax] = useState(0);
 
@@ -42,6 +42,71 @@ const InvoiceProvider = ({ children }) => {
         setTransitionID(transId);
     }, []);
 
+
+
+    // Calculate hourly charge
+    useEffect(() => {
+        if (selectedVehicle.length > 0 && durationHr) {
+            let charge = durationHr * selectedVehicle[0]?.rates?.hourly;
+            setChargesOnHrs(charge);
+            setTotalCharges(prevTotal => prevTotal + charge);
+        }
+    }, [durationHr, selectedVehicle]);
+
+    /* =====================> Calculate All the additional Charges <================================*/
+
+    //Handle collision charge
+    useEffect(() => {
+        if (collisionCharge !== "initial" && collisionCharge === true)
+            setTotalCharges(prevTotal => prevTotal + 9);
+        else if (collisionCharge !== "initial" && collisionCharge === false)
+            setTotalCharges(prevTotal => prevTotal - 9);
+    }, [collisionCharge]);
+
+    //Handle liability insurance charge
+    useEffect(() => {
+        if (liabilityInsurance !== "initial" && liabilityInsurance === true)
+            setTotalCharges(prevTotal => prevTotal + 15);
+        else if (liabilityInsurance !== "initial" && liabilityInsurance === false)
+            setTotalCharges(prevTotal => prevTotal - 15);
+    }, [liabilityInsurance]);
+
+    // Handle discount 
+    useEffect(() => {
+        console.log("execute");
+        // console.log(totalCharges - discount);
+        if (discount > 0)
+            setDiscountedCharge(totalCharges - discount);
+        else
+            setDiscountedCharge(totalCharges);
+    }, [totalCharges, discount])
+
+    //Handle Tax
+    useEffect(() => {
+        if (discountedCharge) {
+
+            if (rentalTax === true) {
+                setTotalChargesWithTax(discountedCharge * 1.11);
+                setRentalTaxAmt(discountedCharge * .11)
+            }
+            if (rentalTax === false) {
+                setTotalChargesWithTax(discountedCharge);
+            }
+        }
+        else {
+            if (rentalTax === true) {
+                setTotalChargesWithTax(totalCharges * 1.11);
+                setRentalTaxAmt(totalCharges * .11)
+            }
+            if (rentalTax === false) {
+                setTotalChargesWithTax(totalCharges);
+            }
+        }
+    }, [discountedCharge, rentalTax, totalCharges])
+
+    console.log(totalChargesWithTax, "taxable");
+
+    /*
     // Calculate hourly charge
     useEffect(() => {
         if (selectedVehicle.length > 0 && durationHr) {
@@ -87,8 +152,10 @@ const InvoiceProvider = ({ children }) => {
         }
     }, [discountedCharge, rentalTax])
 
+    */
 
-    const invoiceInfo = { data, setDurationHr, durationHr, setDiscount, transitionID, setUserInfo, collisionCharge, setCollisionCharge, liabilityInsurance, setLiabilityInsurance, rentalTax, setRentalTax, setSelectedVehicle, selectedVehicle, chargesOnHrs, totalCharges, rentalTaxAmt, totalChargesWithTax };
+
+    const invoiceInfo = { data, setDurationHr, durationHr, setDiscount, transitionID, setUserInfo, collisionCharge, setCollisionCharge, liabilityInsurance, setLiabilityInsurance, rentalTax, setRentalTax, setSelectedVehicle, selectedVehicle, chargesOnHrs, totalCharges, rentalTaxAmt, totalChargesWithTax, discountedCharge };
 
 
     return (
