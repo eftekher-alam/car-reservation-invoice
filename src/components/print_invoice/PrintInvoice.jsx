@@ -16,7 +16,7 @@ const PrintInvoice = () => {
         <div>
             <FormHeader headingText={"Invoice"}></FormHeader>
             <div ref={ref} className="p-10 text-sm">
-                <div className="grid grid-cols-2">
+                <div className="grid grid-cols-2 gap-2">
                     {/* right div` */}
                     <div>
                         <div className="grid grid-cols-2">
@@ -50,7 +50,26 @@ const PrintInvoice = () => {
                         </div>
                         <div className="">
                             <h1 className="text-lg font-bold my-3">ADDITIONAL AUTHORIZED DRIVER(S)</h1>
-                            
+                            <h1 className="text-base font-bold">UNIT DETAILS</h1>
+                            <p>Unit : </p>
+                            <p>Make & Model : </p>
+
+                            <div className="py-5">
+                                <p>BILL TO :</p>
+                                <p>Payment Type : Unpaid</p>
+                                <p>AUTH : $0.00</p>
+                            </div>
+
+                            <div>
+                                <p>Referral:</p>
+                                <p>NOTICE: Collision Insurance (CDW) - $7 per day</p>
+                                <p>Limits liability of damages to one's own vehicle up to $1000 in event of an accident, by waiving this coverage renter agrees to be hold liable for damages up to the entire value of the vehicle</p>
+                            </div>
+                            <div className="grid grid-cols-2 my-5 text-center">
+                                <p>Accept</p>
+                                <p>Reject</p>
+                            </div>
+                            <p>Rental service may be refused anyone when done in the best interest of the renting company or customer - Rates do not include gasoline. -Reserves the right to collect deposit covering estimated rental charges.</p>
                         </div>
                     </div>
                     {/* left div */}
@@ -63,6 +82,7 @@ const PrintInvoice = () => {
                             <p>Date/Time Out: {moment(new Date(pickupDate)).format("MM/DD/YYYY, h:mm a")}</p>
                             <p>Date/Time In: {moment(new Date(returnDate)).format("MM/DD/YYYY, h:mm a")}</p>
                         </div>
+                        {/* summary */}
                         <div className="">
                             <div className="text-sm space-y-1 bg-slate-200">
                                 <h1 className="text-lg font-bold">CHARGE SUMMARY</h1>
@@ -117,8 +137,15 @@ const PrintInvoice = () => {
                                     <div className="col-span-2">${msgTotalAmt.toFixed(2)}</div>
                                 </div>
                             </div>
-
                         </div>
+                        <div className="my-5">
+                            <p>Your rental agreement offers, for an additional charge, an optional waiver to cover all or a part of your responsibility for damage to or loss of the vehicle: Before deciding whether to purchase the walver, you may wish to determine whether you own automobile incsurance or credit card agreement provides to coverage for rental vehicle damage or loss and determine the amount of the deductible under your own insurance coverage. The purchase of the waiver is ot mandator. The waiver is not Insurance. I acknowledge that I have received and read a copy of this</p>
+                        </div>
+                        <p>Renters Signature</p>
+                        -------------------------------------------
+
+                        <p className="mt-10">Additional Driver 1</p>
+                        -------------------------------------------
                     </div>
                 </div>
             </div>
