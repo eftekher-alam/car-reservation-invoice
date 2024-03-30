@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export const InvoiceContext = createContext(null);
 
 const InvoiceProvider = ({ children }) => {
+    const [errorMsg, setErrorMsg] = useState(false);
     const [pickupDate, setPickupDate] = useState("");
     const [returnDate, setReturnDate] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -166,8 +167,9 @@ const InvoiceProvider = ({ children }) => {
     }, [durationHr, hourlyTotalTaxed, dailyTotalTaxed, chargesOnHrs, chargesOnDay, hourlyTaxAmt, dailyTotal, dailyTaxAmt])
 
 
-    const invoiceInfo = { data, setDurationHr, durationHr, setDiscount, transitionID, collisionCharge, setCollisionCharge, liabilityInsurance, setLiabilityInsurance, rentalTax, setRentalTax, setSelectedVehicle, selectedVehicle, chargesOnHrs, discountedCharge, setDurationDay, msgHrsOrDay, msgHrsOrDayAmt, msgTxtAmt, msgTotalAmt, discount, setInvoiceRef, invoiceRef, phone, setPhone, email, setEmail, firstName, setFirstName, lastName, setLastName, returnDate, setReturnDate, pickupDate, setPickupDate };
+    const invoiceInfo = { data, setDurationHr, durationHr, setDiscount, transitionID, collisionCharge, setCollisionCharge, liabilityInsurance, setLiabilityInsurance, rentalTax, setRentalTax, setSelectedVehicle, selectedVehicle, chargesOnHrs, discountedCharge, setDurationDay, msgHrsOrDay, msgHrsOrDayAmt, msgTxtAmt, msgTotalAmt, discount, setInvoiceRef, invoiceRef, phone, setPhone, email, setEmail, firstName, setFirstName, lastName, setLastName, returnDate, setReturnDate, pickupDate, setPickupDate, errorMsg, setErrorMsg };
 
+    console.log(errorMsg, "Error msg");
 
     return (
         <InvoiceContext.Provider value={invoiceInfo}>

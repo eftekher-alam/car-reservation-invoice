@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import ReactToPrint from "react-to-print";
 import { InvoiceContext } from "../../providers/InvoiceProvider";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 const Navbar = () => {
 
     const { invoiceRef } = useContext(InvoiceContext);
+
 
     return (
         <div>
@@ -18,7 +21,9 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
 
-                    <ReactToPrint trigger={() => <a className="btn btn-primary">Print / Download</a>} content={() => invoiceRef.current} />
+                    <div>
+                        <ReactToPrint trigger={() => <a className="btn btn-primary">Print / Download</a>} content={() => invoiceRef.current} />
+                    </div>
                 </div>
             </div>
         </div>

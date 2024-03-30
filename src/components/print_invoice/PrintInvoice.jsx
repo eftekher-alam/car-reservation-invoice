@@ -4,13 +4,16 @@ import FormHeader from "../form_header/FormHeader";
 import moment from "moment";
 
 
+
 const PrintInvoice = () => {
-    const { phone, email, firstName, lastName, setInvoiceRef, transitionID, returnDate, pickupDate, collisionCharge, liabilityInsurance, rentalTax, chargesOnHrs, selectedVehicle, msgHrsOrDay, msgHrsOrDayAmt, msgTxtAmt, msgTotalAmt, discount } = useContext(InvoiceContext);
+    const { phone, email, firstName, lastName, setInvoiceRef, transitionID, returnDate, pickupDate, collisionCharge, liabilityInsurance, rentalTax, chargesOnHrs, selectedVehicle, msgHrsOrDay, msgHrsOrDayAmt, msgTxtAmt, msgTotalAmt, discount, setErrorMsg } = useContext(InvoiceContext);
     const ref = useRef();
 
     useEffect(() => {
         setInvoiceRef(ref);
-    }, [ref, setInvoiceRef]);
+        if (!phone || !email || !firstName || !lastName || !returnDate || !pickupDate)
+            setErrorMsg(true);
+    }, [ref, setInvoiceRef, phone, email, firstName, lastName, returnDate, pickupDate, setErrorMsg]);
 
     return (
         <div>
