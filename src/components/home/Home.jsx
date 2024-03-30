@@ -4,6 +4,7 @@ import CustomerInfo from './../customer_info/CustomerInfo';
 import ChargeSummary from './../charge_summary/ChargeSummary';
 import VehicleInfo from './../vehicle_info/VehicleInfo';
 import AdditionalCharges from './../additional_charges/AdditionalCharges';
+import PrintInvoice from "../print_invoice/PrintInvoice";
 
 const Home = () => {
     return (
@@ -28,6 +29,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <PrintInvoice></PrintInvoice>
         </div>
     );
 };

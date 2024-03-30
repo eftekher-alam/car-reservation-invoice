@@ -4,10 +4,8 @@ import { useEffect } from "react";
 import { InvoiceContext } from "../../providers/InvoiceProvider";
 
 const ReservationDetails = () => {
-    const [pickupDate, setPickupDate] = useState("");
-    const [returnDate, setReturnDate] = useState("");
     const [duration, setDuration] = useState("");
-    const { setDurationHr, setDiscount, transitionID, setDurationDay } = useContext(InvoiceContext);
+    const { setDurationHr, setDiscount, transitionID, setDurationDay, returnDate, setReturnDate, pickupDate, setPickupDate } = useContext(InvoiceContext);
 
     useEffect(() => {
         if (pickupDate && returnDate) {

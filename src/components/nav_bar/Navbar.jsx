@@ -1,4 +1,10 @@
+import { useContext } from "react";
+import ReactToPrint from "react-to-print";
+import { InvoiceContext } from "../../providers/InvoiceProvider";
+
 const Navbar = () => {
+
+    const { invoiceRef } = useContext(InvoiceContext);
 
     return (
         <div>
@@ -11,7 +17,8 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn btn-primary">Print / Download</a>
+
+                    <ReactToPrint trigger={() => <a className="btn btn-primary">Print / Download</a>} content={() => invoiceRef.current} />
                 </div>
             </div>
         </div>

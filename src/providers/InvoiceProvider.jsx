@@ -4,10 +4,18 @@ import PropTypes from 'prop-types';
 export const InvoiceContext = createContext(null);
 
 const InvoiceProvider = ({ children }) => {
+    const [pickupDate, setPickupDate] = useState("");
+    const [returnDate, setReturnDate] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+
+    const [invoiceRef, setInvoiceRef] = useState(null);
     const [durationHr, setDurationHr] = useState(0);
     const [durationDay, setDurationDay] = useState(0);
     const [transitionID, setTransitionID] = useState("");
-    const [userInfo, setUserInfo] = useState({});
+
 
 
     // charges
@@ -37,7 +45,7 @@ const InvoiceProvider = ({ children }) => {
     // Generate Transition ID
     useEffect(() => {
         // transID = Current time + Random Number
-        let transId = "RA" + new Date().getTime().toString() + Math.floor(Math.random() * 100).toString();
+        let transId = "RA #" + new Date().getTime().toString() + Math.floor(Math.random() * 100).toString();
         setTransitionID(transId);
     }, []);
 
@@ -158,7 +166,7 @@ const InvoiceProvider = ({ children }) => {
     }, [durationHr, hourlyTotalTaxed, dailyTotalTaxed, chargesOnHrs, chargesOnDay, hourlyTaxAmt, dailyTotal, dailyTaxAmt])
 
 
-    const invoiceInfo = { data, setDurationHr, durationHr, setDiscount, transitionID, setUserInfo, collisionCharge, setCollisionCharge, liabilityInsurance, setLiabilityInsurance, rentalTax, setRentalTax, setSelectedVehicle, selectedVehicle, chargesOnHrs, discountedCharge, setDurationDay, msgHrsOrDay, msgHrsOrDayAmt, msgTxtAmt, msgTotalAmt, discount, userInfo };
+    const invoiceInfo = { data, setDurationHr, durationHr, setDiscount, transitionID, collisionCharge, setCollisionCharge, liabilityInsurance, setLiabilityInsurance, rentalTax, setRentalTax, setSelectedVehicle, selectedVehicle, chargesOnHrs, discountedCharge, setDurationDay, msgHrsOrDay, msgHrsOrDayAmt, msgTxtAmt, msgTotalAmt, discount, setInvoiceRef, invoiceRef, phone, setPhone, email, setEmail, firstName, setFirstName, lastName, setLastName, returnDate, setReturnDate, pickupDate, setPickupDate };
 
 
     return (

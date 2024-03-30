@@ -60,6 +60,7 @@ const ChargeSummary = () => {
                         <div className="col-span-3 xl:col-span-2">${msgTotalAmt.toFixed(2)}</div>
                     </div>
                 </div>
+                
             </div>
         </div>
     );

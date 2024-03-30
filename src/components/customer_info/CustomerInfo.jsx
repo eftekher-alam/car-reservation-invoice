@@ -1,32 +1,17 @@
-import { useState } from "react";
 import FormHeader from "../form_header/FormHeader";
-import { useEffect } from "react";
 import { useContext } from "react";
 import { InvoiceContext } from './../../providers/InvoiceProvider';
 
 const CustomerInfo = () => {
-    const [fname, setfName] = useState("");
-    const [lname, setlName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const { setUserInfo } = useContext(InvoiceContext);
+    const { setPhone, setEmail, setFirstName, setLastName } = useContext(InvoiceContext);
 
-    useEffect(() => {
-        if (fname && lname && email && phone) {
-            setUserInfo({
-                fname,
-                lname,
-                email,
-                phone
-            })
-        }
-    }, [fname, lname, email, phone, setUserInfo]);
+
 
     const handlerfName = (e) => {
-        setfName(e.target.value);
+        setFirstName(e.target.value);
     }
     const handlerlName = (e) => {
-        setlName(e.target.value);
+        setLastName(e.target.value);
     }
     const handlerEmail = (e) => {
         setEmail(e.target.value);
