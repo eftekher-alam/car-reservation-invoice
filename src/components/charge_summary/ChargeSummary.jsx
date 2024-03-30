@@ -3,7 +3,7 @@ import FormHeader from "../form_header/FormHeader";
 import { InvoiceContext } from "../../providers/InvoiceProvider";
 
 const ChargeSummary = () => {
-    const { collisionCharge, liabilityInsurance, rentalTax, chargesOnHrs, selectedVehicle, rentalTaxAmt, totalChargesWithTax, msgHrsOrDay, msgHrsOrDayAmt, msgTxtAmt, msgTotalAmt } = useContext(InvoiceContext);
+    const { collisionCharge, liabilityInsurance, rentalTax, chargesOnHrs, selectedVehicle, msgHrsOrDay, msgHrsOrDayAmt, msgTxtAmt, msgTotalAmt, discount } = useContext(InvoiceContext);
     return (
         <div>
             <FormHeader headingText={"Charges Summary"}></FormHeader>
@@ -45,6 +45,14 @@ const ChargeSummary = () => {
                             <div className="col-span-1 xl:col-span-2 text-center"></div>
                             <div className="col-span-3 xl:col-span-2">11%</div>
                             <div className="col-span-3 xl:col-span-2">${(msgTxtAmt.toFixed(2))}</div>
+                        </div>
+                    }
+                    {
+                        (discount > 0) && <div className="grid grid-cols-12 gap-1">
+                            <div className=" col-span-5 xl:col-span-6">Discount</div>
+                            <div className="col-span-1 xl:col-span-2 text-center"></div>
+                            <div className="col-span-3 xl:col-span-2"></div>
+                            <div className="col-span-3 xl:col-span-2">${(Number(discount).toFixed(2))}</div>
                         </div>
                     }
                     <div className="grid grid-cols-12 gap-1 font-semibold">

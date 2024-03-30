@@ -1,4 +1,4 @@
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 
 export const InvoiceContext = createContext(null);
@@ -15,15 +15,13 @@ const InvoiceProvider = ({ children }) => {
     const [liabilityInsurance, setLiabilityInsurance] = useState("initial");
     const [additionalTotalCharge, setAdditionalTotalCharge] = useState(0.00);
     const [selectedVehicle, setSelectedVehicle] = useState([]);
-    const [totalCharges, setTotalCharges] = useState(0);
 
     const [discount, setDiscount] = useState(0);
     const [discountedCharge, setDiscountedCharge] = useState(0);
-
-
     const [rentalTax, setRentalTax] = useState(false);
-    const [rentalTaxAmt, setRentalTaxAmt] = useState(0);
-    const [totalChargesWithTax, setTotalChargesWithTax] = useState(0);
+
+
+
 
 
 
@@ -63,7 +61,6 @@ const InvoiceProvider = ({ children }) => {
 
     // Handle discount 
     useEffect(() => {
-        // console.log("execute in discount");
         if (discount > 0)
             setDiscountedCharge(additionalTotalCharge - discount);
         else
@@ -87,12 +84,11 @@ const InvoiceProvider = ({ children }) => {
     }, [durationHr, selectedVehicle]);
 
     useEffect(() => {
-        setHourlyTotal(chargesOnHrs + additionalTotalCharge);
-    }, [additionalTotalCharge, chargesOnHrs]);
+        setHourlyTotal(chargesOnHrs + discountedCharge);
+    }, [discountedCharge, chargesOnHrs]);
 
 
     useEffect(() => {
-        console.log("Executing inside tax hourly");
 
         if (rentalTax === true) {
             setHourlyTotalTaxed(hourlyTotal * 1.11);
@@ -120,12 +116,11 @@ const InvoiceProvider = ({ children }) => {
     }, [durationDay, selectedVehicle]);
 
     useEffect(() => {
-        setDailyTotal(chargesOnDay + additionalTotalCharge);
-    }, [additionalTotalCharge, chargesOnDay]);
+        setDailyTotal(chargesOnDay + discountedCharge);
+    }, [discountedCharge, chargesOnDay]);
 
 
     useEffect(() => {
-        // console.log("Executing inside tax hourly");
 
         if (rentalTax === true) {
             setDailyTotalTaxed(dailyTotal * 1.11);
@@ -136,7 +131,7 @@ const InvoiceProvider = ({ children }) => {
         }
     }, [rentalTax, dailyTotal])
 
-    console.log(hourlyTotalTaxed + "/Hourly  " + dailyTotalTaxed + "/daily", dailyTaxAmt);
+    // console.log(hourlyTotalTaxed + "/Hourly  " + dailyTotalTaxed + "/daily", dailyTaxAmt);
 
 
     /* =====================> Taking the smallest amount among hourly and daily total <================================*/
@@ -150,19 +145,20 @@ const InvoiceProvider = ({ children }) => {
         //if hourly total grater than daily total, the smallest total among them will be shown.
         if (hourlyTotalTaxed > dailyTotalTaxed) {
             setMsgHrsOrDay("daily");
-            setMsgHrsOrDayAmt(dailyTotal);
+            setMsgHrsOrDayAmt(chargesOnDay);
             setMsgTxtAmt(dailyTaxAmt);
             setMsgTotalAmt(dailyTotalTaxed);
         }
         else {
             setMsgHrsOrDay("hourly");
-            setMsgHrsOrDayAmt(hourlyTotal);
+            setMsgHrsOrDayAmt(chargesOnHrs);
             setMsgTxtAmt(hourlyTaxAmt);
             setMsgTotalAmt(hourlyTotalTaxed);
         }
-    }, [durationHr, hourlyTotalTaxed, dailyTotalTaxed, hourlyTotal, hourlyTaxAmt, dailyTotal, dailyTaxAmt])
+    }, [durationHr, hourlyTotalTaxed, dailyTotalTaxed, chargesOnHrs, chargesOnDay, hourlyTaxAmt, dailyTotal, dailyTaxAmt])
 
-    const invoiceInfo = { data, setDurationHr, durationHr, setDiscount, transitionID, setUserInfo, collisionCharge, setCollisionCharge, liabilityInsurance, setLiabilityInsurance, rentalTax, setRentalTax, setSelectedVehicle, selectedVehicle, chargesOnHrs, totalCharges, rentalTaxAmt, totalChargesWithTax, discountedCharge, setDurationDay, msgHrsOrDay, msgHrsOrDayAmt, msgTxtAmt, msgTotalAmt };
+
+    const invoiceInfo = { data, setDurationHr, durationHr, setDiscount, transitionID, setUserInfo, collisionCharge, setCollisionCharge, liabilityInsurance, setLiabilityInsurance, rentalTax, setRentalTax, setSelectedVehicle, selectedVehicle, chargesOnHrs, discountedCharge, setDurationDay, msgHrsOrDay, msgHrsOrDayAmt, msgTxtAmt, msgTotalAmt, discount, userInfo };
 
 
     return (
