@@ -42,7 +42,7 @@ const ReservationDetails = () => {
 
             setDuration(durationMsg);
             setDurationHr(hourDifference);
-            // setDurationDay(days);
+            setDurationDay(days);
 
 
         }

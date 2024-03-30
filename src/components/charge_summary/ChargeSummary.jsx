@@ -3,7 +3,7 @@ import FormHeader from "../form_header/FormHeader";
 import { InvoiceContext } from "../../providers/InvoiceProvider";
 
 const ChargeSummary = () => {
-    const { collisionCharge, liabilityInsurance, rentalTax, chargesOnHrs, selectedVehicle, discountedCharge, rentalTaxAmt, totalChargesWithTax } = useContext(InvoiceContext);
+    const { collisionCharge, liabilityInsurance, rentalTax, chargesOnHrs, selectedVehicle, rentalTaxAmt, totalChargesWithTax, msgHrsOrDay, msgHrsOrDayAmt, msgTxtAmt, msgTotalAmt } = useContext(InvoiceContext);
     return (
         <div>
             <FormHeader headingText={"Charges Summary"}></FormHeader>
@@ -17,10 +17,10 @@ const ChargeSummary = () => {
                     </div>
                     {
                         (chargesOnHrs > 0) && <div className="grid grid-cols-12 gap-1">
-                            <div className=" col-span-5 xl:col-span-6">Hourly</div>
+                            <div className=" col-span-5 xl:col-span-6">{msgHrsOrDay}</div>
                             <div className="col-span-1 xl:col-span-2 text-center">1</div>
-                            <div className="col-span-3 xl:col-span-2">${selectedVehicle[0]?.rates?.hourly.toFixed(2)}</div>
-                            <div className="col-span-3 xl:col-span-2">${chargesOnHrs.toFixed(2)}</div>
+                            <div className="col-span-3 xl:col-span-2">${selectedVehicle[0]?.rates?.[msgHrsOrDay].toFixed(2)}</div>
+                            <div className="col-span-3 xl:col-span-2">${msgHrsOrDayAmt.toFixed(2)}</div>
                         </div>
                     }
                     {
@@ -44,12 +44,12 @@ const ChargeSummary = () => {
                             <div className=" col-span-5 xl:col-span-6">Rental Tax</div>
                             <div className="col-span-1 xl:col-span-2 text-center"></div>
                             <div className="col-span-3 xl:col-span-2">11%</div>
-                            <div className="col-span-3 xl:col-span-2">${(rentalTaxAmt.toFixed(2))}</div>
+                            <div className="col-span-3 xl:col-span-2">${(msgTxtAmt.toFixed(2))}</div>
                         </div>
                     }
                     <div className="grid grid-cols-12 gap-1 font-semibold">
                         <div className="col-span-9 xl:col-span-10">Total</div>
-                        <div className="col-span-3 xl:col-span-2">${totalChargesWithTax.toFixed(2)}</div>
+                        <div className="col-span-3 xl:col-span-2">${msgTotalAmt.toFixed(2)}</div>
                     </div>
                 </div>
             </div>
