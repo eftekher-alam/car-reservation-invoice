@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import ReactToPrint from "react-to-print";
 import { InvoiceContext } from "../../providers/InvoiceProvider";
-import Swal from 'sweetalert2/dist/sweetalert2.js'
-import 'sweetalert2/src/sweetalert2.scss'
 
 const Navbar = () => {
 

@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import { InvoiceContext } from "../../providers/InvoiceProvider";
 import FormHeader from "../form_header/FormHeader";
 import moment from "moment";
+import logo from "./../../assets/car-logo.png"
 
 
 
@@ -25,7 +26,7 @@ const PrintInvoice = () => {
                         <div className="grid grid-cols-2">
                             {/* logo with user & company info  */}
                             <div className="w-full flex flex-col justify-center items-center gap-4">
-                                <div><img src="/public/car-logo.png" alt="" className="w-32" /></div>
+                                <div><img src={logo} alt="" className="w-32" /></div>
                                 <div className="w-full">
                                     <h1>RENTER INFO</h1>
                                     <p className="font-bold capitalize ">{firstName + " " + lastName}</p>
