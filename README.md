@@ -1,3 +1,14 @@
+# Car Reservation project documentation
+
+## Links
+- Live preview : https://car-reservation-invoice.web.app
+
+## Used technologies 
+**1. ReactJS** - A JavaScript library for building user interfaces  
+**2. TailwindCSS** - A utility-first CSS framework for rapidly building modern websites  
+**3. DaisyUI** - The popular component library for Tailwind CSS  
+**4. react-to-print** - It's a package of react that is used to print from the browser window.
+
 ## To run this project follow below steps
 **1. Clone project** - Clone the project  using command `git clone https://github.com/eftekher-alam/car-reservation-invoice.git`
 
